@@ -1,5 +1,7 @@
 
 function post_install(){
+    pearl emerge ${PEARL_PKGREPONAME}/fonts
+
     local pluginname=vim-devicons
     local giturl=https://github.com/ryanoasis/vim-devicons.git
 
