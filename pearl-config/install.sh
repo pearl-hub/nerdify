@@ -2,6 +2,11 @@
 function post_install(){
     pearl emerge ${PEARL_PKGREPONAME}/fonts
 
+    info "Installing or updating the ranger_devicons git repository..."
+    install_or_update_git_repo https://github.com/alexanderjeurissen/ranger_devicons.git "${PEARL_PKGVARDIR}/ranger_devicons" master
+    cd "${PEARL_PKGVARDIR}/ranger_devicons"
+    make install
+
     local pluginname=vim-devicons
     local giturl=https://github.com/ryanoasis/vim-devicons.git
 
@@ -27,6 +32,12 @@ function post_update(){
 
 function pre_remove(){
     rm -rf "${PEARL_PKGVARDIR}/plugins"
+
+    cd "${PEARL_PKGVARDIR}/ranger_devicons"
+    make uninstall
+    rm -rf "${PEARL_PKGVARDIR}/ranger_devicons"
+
     [[ -e $HOME/.config/powerline ]] && rm -rf "$HOME/.config/powerline"
+
     return 0
 }

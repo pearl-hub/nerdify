@@ -26,10 +26,11 @@ Install the following projects:
 
 Configure the tools:
 
-- Powerline
-- Gitgutter
 - Airline
+- Gitgutter
 - NerdTree
+- Powerline
+- Ranger
 - Syntastic
 
 Installation
