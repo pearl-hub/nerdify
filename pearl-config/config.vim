@@ -5,15 +5,20 @@
 let g:airline_left_sep = "\uE0C6"
 let g:airline_right_sep = "\uE0C7"
 
+
 let g:syntastic_style_error_symbol = ''
 let g:syntastic_error_symbol = ''
 let g:syntastic_warning_symbol = ''
+
 
 let g:gitgutter_sign_added = ''
 let g:gitgutter_sign_removed = ''
 let g:gitgutter_sign_modified = 'ﰣ'
 let g:gitgutter_sign_removed_first_line = ''
 let g:gitgutter_sign_modified_removed = '≃'
+
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
 
 set encoding=UTF-8
 
@@ -22,5 +27,4 @@ set packpath+=$PEARL_PKGVARDIR/plugins
 
 " The following is required in order to show the folder symbol:
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-
 
