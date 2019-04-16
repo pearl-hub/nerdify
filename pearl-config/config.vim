@@ -9,13 +9,17 @@ let g:airline_right_sep = "\uE0C7"
 let g:syntastic_style_error_symbol = ''
 let g:syntastic_error_symbol = ''
 let g:syntastic_warning_symbol = ''
+" Other cool characters:
+" '⚡' '😱' '✗' '➽'
+" ⚑ ⚐ ♒ ⛢ ❕ ❗
 
 
 let g:gitgutter_sign_added = ''
 let g:gitgutter_sign_removed = ''
 let g:gitgutter_sign_modified = 'ﰣ'
 let g:gitgutter_sign_removed_first_line = ''
-let g:gitgutter_sign_modified_removed = '≃'
+" or '≃' but it is not available for all fonts
+let g:gitgutter_sign_modified_removed = '≈'
 
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
