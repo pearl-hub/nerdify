@@ -27,7 +27,20 @@ function post_install(){
         info "Set powerline configuration successfully"
     fi
 
-    link tmux "$PEARL_PKGDIR/tmux.conf"
+    if ask "Do you want to setup Tmux status bar for dot-tmux?" "Y"
+    then
+        link tmux "$PEARL_PKGDIR/tmux-statusbar-common.conf"
+
+        if osx_detect
+        then
+            link tmux "$PEARL_PKGDIR/tmux-statusbar-osx.conf"
+        else
+            link tmux "$PEARL_PKGDIR/tmux-statusbar-linux.conf"
+        fi
+    else
+        _unlink_statusbar
+    fi
+
     info "Press 'prefix + I' inside a tmux session to enable the TMUX plugins used by nerdify"
 
     return 0
@@ -38,7 +51,7 @@ function post_update(){
 }
 
 function pre_remove(){
-    unlink tmux "$PEARL_PKGDIR/tmux.conf"
+    _unlink_statusbar
 
     rm -rf "${PEARL_PKGVARDIR}/plugins"
 
@@ -49,4 +62,10 @@ function pre_remove(){
     [[ -e $HOME/.config/powerline ]] && rm -rf "$HOME/.config/powerline"
 
     return 0
+}
+
+_unlink_statusbar() {
+    unlink tmux "$PEARL_PKGDIR/tmux-statusbar-common.conf"
+    unlink tmux "$PEARL_PKGDIR/tmux-statusbar-linux.conf"
+    unlink tmux "$PEARL_PKGDIR/tmux-statusbar-osx.conf"
 }
