@@ -1,5 +1,6 @@
 
 function post_install(){
+    pearl emerge ${PEARL_PKGREPONAME}/tpm
     pearl emerge ${PEARL_PKGREPONAME}/fonts
 
     info "Installing or updating the ranger_devicons git repository..."
@@ -26,6 +27,9 @@ function post_install(){
         info "Set powerline configuration successfully"
     fi
 
+    link tmux "$PEARL_PKGDIR/tmux.conf"
+    info "Press 'prefix + I' inside a tmux session to enable the TMUX plugins used by nerdify"
+
     return 0
 }
 
@@ -34,6 +38,8 @@ function post_update(){
 }
 
 function pre_remove(){
+    unlink tmux "$PEARL_PKGDIR/tmux.conf"
+
     rm -rf "${PEARL_PKGVARDIR}/plugins"
 
     cd "${PEARL_PKGVARDIR}/ranger_devicons"

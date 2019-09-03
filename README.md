@@ -24,7 +24,7 @@ Install the following projects:
 - https://github.com/ryanoasis/vim-devicons
 - https://github.com/ryanoasis/nerd-fonts
 
-Configure the tools:
+This package configure the tools:
 
 - Airline
 - Gitgutter
@@ -32,6 +32,7 @@ Configure the tools:
 - Powerline
 - Ranger
 - Syntastic
+- Tmux
 
 Installation
 ============
@@ -42,15 +43,6 @@ pearl install nerdify
 ```
 
 **Note**: The package will overwrite the files in `~/.config/powerline`.
-
-Dependencies
-------------
-The terminals requires to have fonts installed into the system.
-You can use the package `fonts` in order to have a collection of fonts ready to use:
-
-```sh
-pearl install fonts
-```
 
 Troubleshooting
 ===============
