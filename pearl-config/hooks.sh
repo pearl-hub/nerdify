@@ -1,8 +1,5 @@
 
 function post_install(){
-    pearl emerge ${PEARL_PKGREPONAME}/tpm
-    pearl emerge ${PEARL_PKGREPONAME}/fonts
-
     info "Installing or updating the ranger_devicons git repository..."
     install_or_update_git_repo https://github.com/alexanderjeurissen/ranger_devicons.git "${PEARL_PKGVARDIR}/ranger_devicons" master
     cd "${PEARL_PKGVARDIR}/ranger_devicons"
