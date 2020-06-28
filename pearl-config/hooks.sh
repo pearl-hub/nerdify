@@ -1,9 +1,10 @@
 
 function post_install(){
     info "Installing or updating the ranger_devicons git repository..."
-    install_or_update_git_repo https://github.com/alexanderjeurissen/ranger_devicons.git "${PEARL_PKGVARDIR}/ranger_devicons" master
-    cd "${PEARL_PKGVARDIR}/ranger_devicons"
-    make install
+    local plugin_dir=${HOME}/.config/ranger/plugins
+    mkdir -p ${plugin_dir}
+    install_or_update_git_repo https://github.com/alexanderjeurissen/ranger_devicons.git "${plugin_dir}/ranger_devicons" ""
+    apply "default_linemode devicons" $HOME/.config/ranger/rc.conf false
 
     local pluginname=vim-devicons
     local giturl=https://github.com/ryanoasis/vim-devicons.git
@@ -11,7 +12,7 @@ function post_install(){
     info "Installing or updating the $pluginname git repository..."
     local plugin_root="${PEARL_PKGVARDIR}/plugins/pack/pearl/start"
     mkdir -p "$plugin_root"
-    install_or_update_git_repo $giturl "$plugin_root/$pluginname" master
+    install_or_update_git_repo $giturl "$plugin_root/$pluginname" ""
     [[ -e "$plugin_root/$pluginname/doc" ]] && \
         vim -c "helptags $plugin_root/$pluginname/doc" -c q
 
@@ -52,9 +53,8 @@ function pre_remove(){
 
     rm -rf "${PEARL_PKGVARDIR}/plugins"
 
-    cd "${PEARL_PKGVARDIR}/ranger_devicons"
-    make uninstall
-    rm -rf "${PEARL_PKGVARDIR}/ranger_devicons"
+    unapply "default_linemode devicons" $HOME/.config/ranger/rc.conf
+    rm -rf ${HOME}/.config/ranger/plugins/ranger_devicons
 
     [[ -e $HOME/.config/powerline ]] && rm -rf "$HOME/.config/powerline"
 
